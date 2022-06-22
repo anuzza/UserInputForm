@@ -22,6 +22,16 @@ const SimpleInput = (props) => {
 
   };
 
+  const nameInputBlurHandler = event =>{
+    setEnteredNameTouched(true);
+
+    if(enteredName.trim ()=== ''){
+      setEnteredNameisValid(false)
+      return;
+    }
+  
+  }
+
   const formSubmissionHandler =event =>{
     event.preventDefault();
 
@@ -51,7 +61,7 @@ const SimpleInput = (props) => {
     <form onSubmit={formSubmissionHandler}>
       <div className={nameInputClasses}>
         <label htmlFor='name'>Your Name</label>
-        <input  ref = {nameInputRef}type='text' id='name'  value = {enteredName} onChange={nameInputChangeHandler}/>
+        <input  ref = {nameInputRef}type='text' id='name'  value = {enteredName} onChange={nameInputChangeHandler} onBlur={nameInputBlurHandler}/>
         {nameInputisInvalid && <p className="error-text">Name must not be empty.</p>}
       </div>
       <div className="form-actions">
