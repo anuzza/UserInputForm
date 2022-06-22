@@ -8,21 +8,17 @@ const SimpleInput = (props) => {
   
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  const [formIsValid, setFormIsValid] = useState(false);
-
-  
+   
   const enteredNameisValid = enteredName.trim()!=="";
   
   const nameInputisInvalid = !enteredNameisValid && enteredNameTouched;
 
-  useEffect(()=>{
-    if(enteredNameisValid){
-      setFormIsValid(true);
-    }else{
-      setFormIsValid(false);
-    }
+  let formIsValid = false;
 
-  }, [enteredNameisValid]);
+
+    if(enteredNameisValid){
+      formIsValid = true;
+    }
 
 
   const nameInputChangeHandler = event =>{
