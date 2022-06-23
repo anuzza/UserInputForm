@@ -15,19 +15,18 @@ const SimpleInput = (props) => {
    
   const enteredNameisValid = enteredName.trim()!=="";
 
-  const enteredEmailisValid = enteredEmail.match(    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const enteredEmailisValid = enteredEmail.trim()!== ""&& enteredEmail.match(    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
-  const enteredEmailisEmpty = enteredEmail.trim()=== "";
 
   
   const nameInputisInvalid = !enteredNameisValid && enteredNameTouched;
 
-  const emailisInvalid = enteredEmailisEmpty && enteredEmailTouched|| !enteredEmailisEmpty &&!enteredEmailisValid 
+  const emailisInvalid = !enteredEmailisValid && enteredEmailTouched; 
 
   let formIsValid = false;
 
 
-    if(enteredNameisValid && !emailisInvalid){
+    if(enteredNameisValid && enteredEmailisValid){
       formIsValid = true;
     }
 
@@ -87,8 +86,8 @@ const SimpleInput = (props) => {
         <div className={emailClasses}>
         <label htmlFor="email">E-mail Address</label>
         <input type = 'text' id = 'email' onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
-        {enteredEmailisEmpty && enteredEmailTouched && <p className="error-text">E-mail must not be Empty</p>}
-        {!enteredEmailisEmpty && !enteredEmailisValid && <p className="error-text">Not a valid email</p>}
+        {emailisInvalid && <p className="error-text">Enter a valid email</p>}
+        
         </div>
 
       
