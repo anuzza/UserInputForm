@@ -34,7 +34,7 @@ const SimpleInput = (props) => {
   const formSubmissionHandler =event =>{
     event.preventDefault();
 
-    if(!enteredNameisValid){      
+    if(!enteredNameisValid ||!enteredEmailisValid){      
       return;
     }
     // console.log(enteredName); 
